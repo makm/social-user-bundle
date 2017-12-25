@@ -1,0 +1,39 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    #alias for use autowire
+    Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface:
+      alias: security.authentication.manager
+
+    Makm\SocialUserBundle\Security\AuthenticationProvider:
+      arguments:
+          -
+      abstract: true
+      public: false
+
+    Makm\SocialUserBundle\Security\Listener:
+      arguments:
+          - '@security.token_storage'
+          - '@security.authentication.manager'
+          - '@security.http_utils'
+          - '@Makm\SocialUserBundle\Security\SuccessHandler'
+          - '@Makm\SocialUserBundle\Security\FailureHandler'
+          - ~
+      abstract: true
+      public: false
+
+    Makm\SocialUserBundle\Security\SuccessHandler:
+      arguments:
+          - '@security.http_utils'
+          -
+      abstract: true
+      public: false
+
+    Makm\SocialUserBundle\Security\FailureHandler:
+      arguments:
+          - '@security.http_utils'
+          -
+      abstract: true
+      public: false
