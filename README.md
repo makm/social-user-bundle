@@ -1,2 +1,1 @@
-# social-user-bundle
-# social-user-bundle
+Symfony's bundle for use authorization services as ulogin, loginza..etc
